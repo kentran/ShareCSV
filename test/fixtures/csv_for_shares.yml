@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  link_id: MyString
+  data: MyText
+  file_size: 1
+  num_lines: 1
+
+two:
+  link_id: MyString
+  data: MyText
+  file_size: 1
+  num_lines: 1
