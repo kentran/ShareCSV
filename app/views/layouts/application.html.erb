@@ -7,9 +7,11 @@
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <meta name="description" content="PasteCSV is a quick and simple way for you to share CSV with others. Pastebin for CSV."/>
+
 </head>
 <body>
-
 
 <div class="navbar navbar-inverse navbar-default" role="navigation">
   <div class="container">
@@ -20,7 +22,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">PasteCSV</a>
+      <div class="navbar-brand">
+        <a href="/">PasteCSV</a>
+      </div>
+
     </div>
   </div>
 </div>
@@ -31,6 +36,8 @@
 
 <footer>
   <div class="container">
+    <%= link_to "Upload CSV", root_path %>
+    &middot;
     <%= link_to "About", about_path %>
   </div>
 </footer>

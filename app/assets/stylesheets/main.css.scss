@@ -1,4 +1,5 @@
 footer {
+  text-align: center;
   border-top: 1px #D7DADD solid;
   margin-top: 50px;
   padding-top: 8px;
@@ -15,14 +16,23 @@ footer {
 .intro {
   font-family: Arial, sans-serif;
   font-size: 22px;
-  margin-bottom: 20px;
-
+  margin-bottom: 35px;
+  margin-top: 12px;
 }
 
 .navbar-default {
   background-color: #4679bd;
   border: 0;
   border-radius: 0;
+
+  .navbar-brand {
+    span {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 80%;
+      color: #fff;
+    }
+  }
 
   a, a:visited {
     color: #fff;
@@ -35,19 +45,27 @@ footer {
 }
 
 p {
-  //  font-size: 15px;
   line-height: 1.5;
   margin: 10px 0;
 }
 
 .dropzone {
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  z-index: 50;
+  border: 6px dashed #e0e0e0;
   min-height: 360px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.03);
   padding: 23px;
   padding-top: 125px;
+
+  .dz-preview {
+    padding: 20px 150px;
+  }
+
+  &.dz-drag-hover {
+    border-color: #2e2e2e;
+  }
 
   .dz-message {
     text-align: center;
