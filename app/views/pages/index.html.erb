@@ -24,8 +24,8 @@
     clickable: '.from-pc',
     uploadMultiple: false,
     accept: function (file, done) {
-      if (file.name == "justinbieber.jpg") {
-        done("Naha, you don't.");
+      if (file.name.slice(-4).toLowerCase() != ".csv") {
+        done("Only CSV files are allowed");
       }
       else {
         done();
