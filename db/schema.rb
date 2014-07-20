@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140719044110) do
+ActiveRecord::Schema.define(version: 20140719072425) do
 
   create_table "csv_for_shares", force: true do |t|
     t.string   "link_id"
     t.text     "data"
-    t.integer  "file_size"
+    t.string   "file_size"
     t.integer  "num_lines"
     t.string   "download_link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "original_file_name"
   end
 
   add_index "csv_for_shares", ["link_id"], name: "index_csv_for_shares_on_link_id"
