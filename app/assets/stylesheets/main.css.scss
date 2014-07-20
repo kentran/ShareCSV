@@ -118,3 +118,27 @@ p {
     font-weight: bold;
   }
 }
+
+.navbar-nav {
+  li {
+    a {
+      color: #fff !important;
+      font-size: 15px !important;
+      padding-bottom: 0 !important;
+      padding-top: 17px !important;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.progress-bar {
+  background-color: #428bca !important;
+  color: #fff !important;
+  line-height: 29px !important;
+}
+
+.progress {
+  height: 30px !important;
+}

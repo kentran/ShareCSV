@@ -24,8 +24,14 @@
       <div class="navbar-brand">
         <a href="/">ShareCSV</a>
       </div>
-
     </div>
+    <%- unless current_page?(root_url) %>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Upload CSV", root_path %></li>
+      </ul>
+    </div>
+    <% end %>
   </div>
 </div>
 

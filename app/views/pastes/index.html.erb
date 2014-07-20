@@ -40,11 +40,10 @@
         }
       },
       init: function() {
+
         this.on('uploadprogress', function(file, progress, bytesSent) {
-          $('.progress-bar').css('background-color', '#428bca');
           $('.progress-bar').css('width', progress+"%");
-          $('.progress-bar').css('color', 'white');
-          $('.progress-bar').html(progress+"%");
+          $('.progress-bar').html(Math.round(progress)+"%");
 
           if (progress == 100) {
             $('.progress-bar').html("Processing the uploaded file. Please wait...");
