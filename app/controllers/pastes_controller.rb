@@ -86,19 +86,8 @@ class PastesController < ApplicationController
   end
 
   def extract_sample_and_count(file_path)
-    count = 0
-    data = ''
-
     num_lines = `wc -l < #{file_path}`.strip.to_i
-
-    file = File.open(file_path)
-    while line = file.readline
-      count += 1
-      if count > 101
-        break
-      end
-      data += line
-    end
+    data = `head -n 100 < #{file_path}`
 
     return num_lines, data
   end
