@@ -1,0 +1,39 @@
+<div class="meta-wrapper">
+  <div class="container">
+    <h2><%= @paste.original_file_name %></h2>
+
+    <div class="meta">
+      <span title="<%= @paste.created_at %>"><%= time_ago_in_words(@paste.created_at) %></span>
+      &middot;
+      <span><%= @paste.file_size  %></span>
+      &middot;
+      <span><%= number_with_delimiter(@paste.num_lines) %> lines</span>
+    </div>
+
+    <div class="margin-top-10">
+      <a href="#" class="btn btn-primary">Download</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container data-wrapper">
+
+  <%- if @paste.num_lines > 100 %>
+    <div class="first-x-info">Showing first 100 records...</div>
+  <%- end %>
+
+  <table class="table table-data table-bordered table-striped table-records">
+    <tbody>
+    <%- @data_array.each do |row| %>
+      <tr>
+        <%- row.each do |cell| %>
+          <td><%= cell %></td>
+        <%- end %>
+      </tr>
+    <%- end %>
+    </tbody>
+  </table>
+
+</div>
+
