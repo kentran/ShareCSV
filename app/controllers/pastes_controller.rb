@@ -1,6 +1,8 @@
 class PastesController < ApplicationController
   include ActionView::Helpers::NumberHelper
 
+  S3_PREFIX = ENV['S3_PREFIX'] || 'uploads_dev'
+
   before_filter :set_format
 
   def set_format
@@ -62,8 +64,13 @@ class PastesController < ApplicationController
   end
 
   def show
-    require 'csv'
     @paste = Paste.find_by_slug(params[:slug])
+    unless @paste
+      render :show_notfound
+      return
+    end
+
+    require 'csv'
     @data_array = CSV.new(@paste.sample_data).to_a
   end
 
@@ -76,20 +83,22 @@ class PastesController < ApplicationController
   private
 
   def http_s3_url_for(slug, filename)
-    "https://s3.amazonaws.com/csvpastebin/uploads/#{slug}/#{filename}"
+    "https://s3.amazonaws.com/csvpastebin/#{S3_PREFIX}/#{slug}/#{filename}"
   end
 
   def upload_to_s3(slug, original_filename, temp_filepath)
-    s3_key = "uploads/#{slug}/#{original_filename}"
+    s3_key = "#{S3_PREFIX}/#{slug}/#{original_filename}"
     s3object = AWS::S3.new.buckets['csvpastebin'].objects[s3_key]
     s3object.write(file: temp_filepath, content_type: 'text/csv')
   end
 
   def extract_sample_and_count(file_path)
-    num_lines = `wc -l < #{file_path}`.strip.to_i
-    data = `head -n 100 < #{file_path}`
-
-    return num_lines, data
+    string = File.read(file_path)
+    string = string.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').gsub(/\r\n?/, "\n")
+    arr = string.split("\n")
+    num_lines = arr.size
+    sample_data = arr[0..100].join("\n")
+    return num_lines, sample_data
   end
 
 
