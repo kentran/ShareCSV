@@ -15,9 +15,17 @@ footer {
 
 .intro {
   font-family: Arial, sans-serif;
-  font-size: 22px;
   margin-bottom: 35px;
   margin-top: 12px;
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
+  a, a:visited {
+    color: #ADADAD;
+  }
 }
 
 .navbar-default {

@@ -3,7 +3,10 @@
 <div class="container">
 
   <div class="intro text-center">
-    ShareCSV is a quick and simple way to share CSV files with others.
+    <h2>ShareCSV is a quick and simple way to share CSV files with others.</h2>
+    <span>
+    <a href="/s/9096d32f98aa0ac671a1cca16fa43be8/SalesJan2009.csv">See example</a>
+    </span>
   </div>
 
   <%= form_tag({action: 'create'}, {id: 'drop-form', multipart: true, class: 'dropzone'}) do %>
@@ -15,7 +18,8 @@
     </div>
   <% end %>
   <br/>
-  </form>
+  <br/>
+
 
 </div>
 
