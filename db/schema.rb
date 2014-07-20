@@ -11,19 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140719072425) do
+ActiveRecord::Schema.define(version: 20140719044110) do
 
-  create_table "csv_for_shares", force: true do |t|
-    t.string "link_id"
-    t.text "data"
-    t.integer 'file_size'
-    t.integer "num_lines"
-    t.string 'download_link'
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "pastes", force: true do |t|
+    t.string   "slug"
+    t.text     "sample_data"
+    t.string   "file_name"
+    t.integer  "file_size"
+    t.integer  "num_lines"
+    t.string   "download_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "original_file_name"
   end
 
-  add_index "csv_for_shares", ["link_id"], name: "index_csv_for_shares_on_link_id"
+  add_index "pastes", ["slug"], name: "index_pastes_on_slug", unique: true, using: :btree
 
 end

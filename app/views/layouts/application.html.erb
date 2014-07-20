@@ -3,9 +3,8 @@
 <head>
   <title>Share CSV files online - PasteCSV</title>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 
   <meta name="description" content="PasteCSV is a quick and simple way for you to share CSV with others. Pastebin for CSV."/>
@@ -29,8 +28,6 @@
     </div>
   </div>
 </div>
-
-
 
 <%= yield %>
 

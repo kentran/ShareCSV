@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   get 'show' => 'pages#show'
   get 'about' => 'pages#about'
 
-  root 'csv_for_shares#index'
+  root 'pastes#index'
 
-  get ":link_id/:original_file_name" => "csv_for_shares#show",
-      :as => "show_csv", :defaults => {:format => 'html'}
+  get 'dl/:slug/:filename' => 'pastes#download', as: 'download_csv'
 
-  resources :csv_for_shares
+  get 's/:slug/:filename' => 'pastes#show',
+      :as => 'show_csv', :defaults => {:format => 'html'}
+
+  resources :pastes
 end

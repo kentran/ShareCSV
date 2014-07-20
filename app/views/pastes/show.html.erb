@@ -1,17 +1,17 @@
 <div class="meta-wrapper">
   <div class="container">
-    <h2><%= @paste.original_file_name %></h2>
+    <h2><%= @paste.file_name %></h2>
 
     <div class="meta">
       <span title="<%= @paste.created_at %>"><%= time_ago_in_words(@paste.created_at) %></span>
       &middot;
-      <span><%= @paste.file_size  %></span>
+      <span><%= number_to_human_size(@paste.file_size)  %></span>
       &middot;
       <span><%= number_with_delimiter(@paste.num_lines) %> lines</span>
     </div>
 
     <div class="margin-top-10">
-      <a href="#" class="btn btn-primary">Download</a>
+      <%= link_to "Download", download_csv_path(@paste.slug, @paste.file_name), class: "btn btn-primary" %>
     </div>
   </div>
 </div>
@@ -35,5 +35,11 @@
     </tbody>
   </table>
 
+  <%- if @paste.num_lines > 100 %>
+    <div class="first-x-info">Download to view more...</div>
+    <div class="margin-top-10">
+      <%= link_to "Download", download_csv_path(@paste.slug, @paste.file_name), class: "btn btn-primary" %>
+    </div>
+  <%- end %>
 </div>
 
