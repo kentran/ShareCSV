@@ -1,0 +1,42 @@
+<%= notice %>
+
+<div class="container">
+
+  <div class="intro text-center">
+    PasteCSV is a quick and simple way to share CSV files with others.
+  </div>
+
+
+  <%= form_tag({action: 'create'}, {id: 'drop-form', multipart: true, class: 'dropzone'}) do %>
+    <div class="dz-message">
+      <h2>Drag and drop CSV file here</h2>
+      <small>(max 5MB)</small>
+      <br/><br/>
+      <a class="from-pc" href="javascript:">Or select file from your computer</a>
+    </div>
+  <% end %>
+  <br/>
+  </form>
+
+</div>
+
+<script language="javascript">
+  Dropzone.options.dropForm = {
+    maxFilesize: 5, // MB
+    clickable: '.from-pc',
+    uploadMultiple: false,
+    accept: function (file, done) {
+      if (file.name.slice(-4).toLowerCase() != ".csv") {
+        done("Only CSV files are allowed");
+      }
+      else {
+        done(); // go ahead and send file to server
+      }
+    },
+    success: function (file, response) {
+      if (response.status == 'success') {
+        window.location.href = response.redirect;
+      }
+    }
+  };
+</script>

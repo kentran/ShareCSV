@@ -53,9 +53,15 @@ class CsvForSharesController < ApplicationController
     )
 
     if @csv_for_share.save
-      redirect_to show_csv_path(@csv_for_share.link_id, @csv_for_share.original_file_name)
+      render json: {
+        status: 'success',
+        redirect: show_csv_path(@csv_for_share.link_id, @csv_for_share.original_file_name)
+      }
     else
-      redirect_to root_path, :alert => "File info is failed to save"
+      render json: {
+        status: 'error',
+        error: 'File info is failed is save'
+      }
     end
   end
 
