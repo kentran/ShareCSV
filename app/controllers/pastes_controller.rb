@@ -87,7 +87,7 @@ class PastesController < ApplicationController
 
   def extract_sample_and_count(file_path)
     string = File.read(file_path)
-    string.gsub!(/\r\n?/, "\n")
+    string = string.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').gsub(/\r\n?/, "\n")
     arr = string.split("\n")
     num_lines = arr.size
     sample_data = arr[0..100].join("\n")
