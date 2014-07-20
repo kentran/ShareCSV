@@ -1,6 +1,8 @@
 class PastesController < ApplicationController
   include ActionView::Helpers::NumberHelper
 
+  S3_PREFIX = ENV['S3_PREFIX'] || 'uploads_dev'
+
   before_filter :set_format
 
   def set_format
@@ -76,11 +78,11 @@ class PastesController < ApplicationController
   private
 
   def http_s3_url_for(slug, filename)
-    "https://s3.amazonaws.com/csvpastebin/uploads/#{slug}/#{filename}"
+    "https://s3.amazonaws.com/csvpastebin/#{S3_PREFIX}/#{slug}/#{filename}"
   end
 
   def upload_to_s3(slug, original_filename, temp_filepath)
-    s3_key = "uploads/#{slug}/#{original_filename}"
+    s3_key = "#{S3_PREFIX}/#{slug}/#{original_filename}"
     s3object = AWS::S3.new.buckets['csvpastebin'].objects[s3_key]
     s3object.write(file: temp_filepath, content_type: 'text/csv')
   end
