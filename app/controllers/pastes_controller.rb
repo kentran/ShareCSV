@@ -86,10 +86,12 @@ class PastesController < ApplicationController
   end
 
   def extract_sample_and_count(file_path)
-    num_lines = `wc -l < #{file_path}`.strip.to_i
-    data = `head -n 100 < #{file_path}`
-
-    return num_lines, data
+    string = File.read(file_path)
+    string.gsub!(/\r\n?/, "\n")
+    arr = string.split("\n")
+    num_lines = arr.size
+    sample_data = arr[0..100].join("\n")
+    return num_lines, sample_data
   end
 
 
