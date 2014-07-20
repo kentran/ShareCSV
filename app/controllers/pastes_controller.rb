@@ -64,8 +64,13 @@ class PastesController < ApplicationController
   end
 
   def show
-    require 'csv'
     @paste = Paste.find_by_slug(params[:slug])
+    unless @paste
+      render :show_notfound
+      return
+    end
+
+    require 'csv'
     @data_array = CSV.new(@paste.sample_data).to_a
   end
 
